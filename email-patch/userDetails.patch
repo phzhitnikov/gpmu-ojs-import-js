@@ -1,0 +1,18 @@
+--- userDetails_old.tpl	2019-03-13 05:30:51.480000000 +0300
++++ userDetails.tpl	2019-03-13 05:30:51.479000000 +0300
+@@ -47,8 +47,14 @@
+ 	{/if}
+ 
+ 	{if !$disableEmailSection}
++		{if $emailIsOptional}
++			{assign var="emailRequired" value=false}
++		{else}
++			{assign var="emailRequired" value=true}
++		{/if}
++
+ 		{fbvFormSection title="about.contact"}
+-			{fbvElement type="text" label="user.email" id="email" required="true" value=$email maxlength="90" size=$fbvStyles.size.MEDIUM}
++			{fbvElement type="text" label="user.email" id="email" required=$emailRequired value=$email maxlength="90" size=$fbvStyles.size.MEDIUM}
+ 		{/fbvFormSection}
+ 	{/if}
+ 

@@ -1,0 +1,10 @@
+--- authorForm_old.tpl	2019-03-13 05:30:57.527000000 +0300
++++ authorForm.tpl	2019-03-13 05:30:57.527000000 +0300
+@@ -36,6 +36,7 @@
+ 		disableSignatureSection=true
+ 		extraContentSectionUnfolded=true
+ 		countryRequired=true
++		emailIsOptional=true
+ 	}
+ 
+ 	{fbvFormArea id="submissionSpecific"}

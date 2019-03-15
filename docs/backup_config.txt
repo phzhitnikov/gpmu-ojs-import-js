@@ -1,0 +1,100 @@
+
+Информация о сервере
+Задаем название 	Задаем значение
+ОС платформы 	Linux
+Версия PHP 	5.6.32-5.6.32+mh2
+Версия Apache 	Apache
+Драйвер базы данных 	mysql
+Версия СУБД 	5.6.40-log
+Конфигурация OJS
+Задаем название 	Задаем значение
+general 	
+installed 	включено
+base_url 	http://pkp.sfu.ca/ojs
+session_cookie_name 	OJSSID
+session_lifetime 	30
+scheduled_tasks 	отключено
+time_zone 	UTC
+date_format_trunc 	%m-%d
+date_format_short 	%Y-%m-%d
+date_format_long 	%B %e, %Y
+datetime_format_short 	%Y-%m-%d %I:%M %p
+datetime_format_long 	%B %e, %Y - %I:%M %p
+time_format 	%I:%M %p
+disable_path_info 	отключено
+allow_url_fopen 	отключено
+restful_urls 	отключено
+trust_x_forwarded_for 	отключено
+enable_cdn 	включено
+citation_checking_max_processes 	3
+show_upgrade_warning 	включено
+enable_minified 	отключено
+enable_beacon 	отключено
+database 	
+driver 	mysql
+host 	u51131.mysql.masterhost.ru
+username 	u51131_vp
+password 	ser2po6ato
+name 	u51131_ojs3
+persistent 	отключено
+debug 	отключено
+cache 	
+object_cache 	none
+memcache_hostname 	localhost
+memcache_port 	11211
+web_cache 	отключено
+web_cache_hours 	1
+i18n 	
+locale 	ru_RU
+client_charset 	utf-8
+connection_charset 	отключено
+database_charset 	отключено
+charset_normalization 	отключено
+files 	
+files_dir 	/home/u51131/ojs3.gpmu.org/uploads
+public_files_dir 	public
+umask 	18
+filename_revision_match 	70
+finfo 	
+Нет элементов
+security 	
+force_ssl 	отключено
+force_login_ssl 	отключено
+session_check_ip 	включено
+encryption 	sha1
+salt 	YouMustSetASecretKeyHere!!
+api_key_secret 	
+reset_seconds 	7200
+allowed_html 	a[href|target|title],em,strong,cite,code,ul,ol,li[class],dl,dt,dd,b,i,u,img[src|alt],sup,sub,br,p
+email 	
+time_between_emails 	3600
+max_recipients 	10
+require_validation 	отключено
+validation_timeout 	14
+search 	
+min_word_length 	3
+results_per_keyword 	500
+result_cache_hours 	1
+oai 	
+oai 	включено
+repository_id 	repid_1
+oai_max_records 	100
+interface 	
+items_per_page 	25
+page_links 	10
+captcha 	
+recaptcha 	отключено
+recaptcha_public_key 	your_public_key
+recaptcha_private_key 	your_private_key
+captcha_on_register 	включено
+cli 	
+perl 	/usr/bin/perl
+tar 	/bin/tar
+xslt_command 	
+proxy 	
+Нет элементов
+debug 	
+show_stacktrace 	отключено
+display_errors 	отключено
+deprecation_warnings 	отключено
+log_web_service_info 	отключено 

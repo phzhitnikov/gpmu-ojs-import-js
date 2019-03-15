@@ -1,0 +1,11 @@
+--- AuthorForm.inc.php	2019-03-13 06:36:56.547370700 +0300
++++ AuthorForm.inc.old.php	2019-03-13 06:36:46.571352100 +0300
+@@ -37,7 +37,7 @@
+ 		// Validation checks for this form
+ 		$this->addCheck(new FormValidator($this, 'firstName', 'required', 'submission.submit.form.authorRequiredFields'));
+ 		$this->addCheck(new FormValidator($this, 'lastName', 'required', 'submission.submit.form.authorRequiredFields'));
+-		$this->addCheck(new FormValidatorEmail($this, 'email', 'optional', 'form.emailRequired'));
++		$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'form.emailRequired'));
+ 		$this->addCheck(new FormValidatorUrl($this, 'userUrl', 'optional', 'user.profile.form.urlInvalid'));
+ 		$this->addCheck(new FormValidator($this, 'userGroupId', 'required', 'submission.submit.form.contributorRoleRequired'));
+ 		$this->addCheck(new FormValidatorORCID($this, 'orcid', 'optional', 'user.orcid.orcidInvalid'));

@@ -1,0 +1,43 @@
+version: "3.3"
+services:
+  mysql-ojs-3114:
+    image: mysql:5.7
+    container_name: mysql-ojs-3114
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ojs
+      MYSQL_DATABASE: ojs
+      MYSQL_USER: ojs
+      MYSQL_PASSWORD: ojs
+  pkp-ojs-3114:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name : pkp-ojs-3114
+    restart: always
+    ports:
+      - "8080:80"
+      - "8443:443"
+    volumes:
+      - /etc/localtime:/etc/localtime             # to sync the container clock with localhost.
+      - ./files/private:/var/www/files            # ojs' private files
+      - ./files/public:/var/www/html/public       # ojs' public files
+      - ./files/logs:/var/log/apache2             # apache logs
+
+      # - ./config/ojs.config.inc.php:/var/www/html/config.inc.php      # ojs' config
+      # - ./config/apache.htaccess:/var/www/html/.htaccess              # ojs' htaccess
+      # - ./config/php.custom.ini:/usr/local/etc/php/conf.d/custom.ini  # php config      
+    environment:
+        SERVERNAME: 'localhost'
+        OJS_CLI_INSTALL: 1
+        OJS_DB_HOST: 'mysql-ojs-3114'
+    depends_on: 
+      - mysql-ojs-3114
+    # labels:
+      # - traefik.backend=ojs
+      # - traefik.frontend.rule=Host:myserver.mydomain
+      # - traefik.docker.network=proxy
+      # - traefik.port=8080
+    # networks:
+      # - internal
+      # - proxy
