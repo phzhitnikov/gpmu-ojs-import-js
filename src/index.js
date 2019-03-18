@@ -31,4 +31,6 @@ console.log("Got datastores:", datastores);
 
     await importer.importIssue(d, selectedJournal);
   });
+
+  console.success("All issues have been imported");
 })();
