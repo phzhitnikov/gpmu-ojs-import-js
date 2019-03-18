@@ -108,7 +108,7 @@ class Client {
 
         if (!jsonData) Promise.reject();
 
-        console.log("Parsing journals..");
+        // console.log("Parsing journals..");
         var journals = [];
 
         const $ = cheerio.load(jsonData.content);

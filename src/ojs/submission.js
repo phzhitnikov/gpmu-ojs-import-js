@@ -370,7 +370,7 @@ class Submission {
       })
       .then(jsonData => {
         // TODO Check JSON has certain info
-        console.info("addAuthor result:", jsonData);
+        // console.info("addAuthor result:", jsonData);
 
         if (!jsonData) Promise.reject();
       })
@@ -431,7 +431,7 @@ class Submission {
       .then(data => {
         data = { ...data[0], ...data[1] };
 
-        console.log("Galley data:", data);
+        // console.log("Galley data:", data);
         this.galleyUpload(
           this.info.materialFilePath,
           data.genreId,

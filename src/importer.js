@@ -35,7 +35,7 @@ class Importer {
         when: answers => {
           return answers.selectedJournal == "[New journal]";
         },
-        validate: function(value) {
+        validate: function (value) {
           if (!value.match(/^[a-zA-Z0-9\/._-]+$/))
             return "Slug can only contain numbers, english letters, dashes (-) and underscores (_)";
           else if (journalChoices.includes(value))
@@ -71,7 +71,7 @@ class Importer {
     // Create journal if needed
     const exists = await this.client.journalExists(journalSlug);
     if (!exists) {
-      //   console.error(`Journal with slug ${journalSlug} doesnt exist`);
+      console.info(`Creating journal ${journalSlug}`);
 
       const journalTitle_rus = $xml("journalInfo[lang=RUS]")
         .find("title")
