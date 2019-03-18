@@ -11,7 +11,7 @@ const helpers = require("./helpers");
 const client = new Client(config.PRODUCTION);
 const importer = new Importer(client);
 
-if (!argv._) {
+if (argv._.length < 1) {
   console.error("No dirs provided");
   return;
 }
