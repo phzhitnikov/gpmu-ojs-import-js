@@ -53,7 +53,16 @@ class Importer {
   getXMLDatastores(paths) {
     const arr = paths.map(p => {
       p = path.resolve(p);
-      const searchPattern = `${p}\\**\\*.xml`;
+
+      var searchPattern;
+
+      if (process.platform == 'linux') {
+        searchPattern = `${p}/**/*.xml`;
+      }
+      else if (process.platform == 'win32') {
+        searchPattern = `${p}\\**\\*.xml`;
+      }
+
       return glob.sync(searchPattern);
     });
 
