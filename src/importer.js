@@ -95,6 +95,7 @@ class Importer {
       };
       //   console.log("journalInfo", journalInfo);
       await Journal.create(this.client, journalInfo);
+      await Journal.makeMultilingual(this.client, journalSlug);
     }
 
     //Collect issue info

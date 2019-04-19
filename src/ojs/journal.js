@@ -2,6 +2,7 @@ const schema = require("schm");
 const translate = require("schm-translate");
 
 const endpoints = require("./endpoints");
+const form_data = require("./form-data");
 
 const journalCreateSchema = schema(
   {
@@ -81,3 +82,20 @@ exports.create_no_validation = async (client, journalInfo = {}) => {
     })
     .catch(err => console.error("Journal creation failed:", err));
 };
+
+exports.makeMultilingual = async (client, journalSlug) => {
+  journalUrl = client.getJournalUrl(journalSlug);
+
+  await client
+    .send({
+      baseUrl: journalUrl,
+      method: "POST",
+      uri: endpoints.journal.languageSettings,
+      qs: form_data.journal.addEnglishForms
+    })
+    .then(response => {
+      // TODO Check JSON has certain info ('dataChanged' field)
+      console.info("Make journal multilingual result:", response.body);
+    })
+    .catch(err => console.error("Making journal multilingual failed:", err));
+}

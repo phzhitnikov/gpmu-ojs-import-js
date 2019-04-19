@@ -1,4 +1,11 @@
 module.exports = {
+    journal: {
+        addEnglishForms: {
+            rowId: 'en_US',
+            setting: 'supportedSubmissionLocales',
+            value: 1
+        }
+    },
     submission: {
         step1_save: {
             'csrfToken': '',

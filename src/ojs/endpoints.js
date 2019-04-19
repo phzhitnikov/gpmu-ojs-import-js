@@ -5,7 +5,8 @@ module.exports = {
     },
     journal: {
         getAll: 'index/$$$call$$$/grid/admin/journal/journal-grid/fetch-grid',
-        create: 'index/$$$call$$$/grid/admin/journal/journal-grid/update-context'
+        create: 'index/$$$call$$$/grid/admin/journal/journal-grid/update-context',
+        languageSettings: '$$$call$$$/grid/settings/languages/manage-language-grid/save-language-setting'
     },
     issue: {
         getAll: '$$$call$$$/grid/issues/future-issue-grid/fetch-grid',
