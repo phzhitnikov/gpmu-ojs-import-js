@@ -151,7 +151,9 @@ class Submission {
   step3_metadata() {
     const info = {
       "title[ru_RU]": this.info.title_rus,
+      "title[en_US]": this.info.title_eng,
       "abstract[ru_RU]": this.info.abstract_rus,
+      "abstract[en_US]": this.info.abstract_eng,
       "keywords[ru_RU-keywords]": this.info.keywords
     };
 
