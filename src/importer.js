@@ -207,6 +207,7 @@ class Importer {
       const $individInfo_eng = $author.find("individInfo[lang=ENG]");
 
       const authorInfo_rus = this.getAuthorInfo($individInfo_rus);
+      const authorInfo_eng = this.getAuthorInfo($individInfo_eng);
 
       var authorInfo = {};
       authorInfo.firstName = authorInfo_rus.firstName;
@@ -216,6 +217,12 @@ class Importer {
 
       authorInfo['affiliation[ru_RU]'] = authorInfo_rus.affiliation;
       authorInfo['biography[ru_RU]'] = authorInfo_rus.biography;
+
+      if ($individInfo_eng) {
+        authorInfo['affiliation[en_US]'] = authorInfo_eng.affiliation;
+        authorInfo['biography[en_US]'] = authorInfo_eng.biography;
+      }
+
       authorInfoCollection.push(authorInfo);
     });
 
