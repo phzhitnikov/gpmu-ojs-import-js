@@ -158,25 +158,19 @@ class Importer {
     const splitted_initials = initials.split(/[\s.]+/).filter(Boolean);
     // console.log(initials, '||', splitted_initials);
 
-    const first_name = splitted_initials[0];
-    info["firstName"] = first_name;
+    info.firstName = splitted_initials[0];
 
-    const middle_name =
-      splitted_initials.length > 1 ? splitted_initials[1] : "";
-    info["middleName"] = middle_name;
+    info.middleName = splitted_initials.length > 1 ? splitted_initials[1] : "";
 
-    const surname = $individInfo.find("surname").text();
-    info["lastName"] = surname;
+    info.lastName = $individInfo.find("surname").text();
 
     const organization = $individInfo.find("orgName").text();
     const address = $individInfo.find("address").text();
-    info["affiliation[ru_RU]"] = organization + " " + address;
+    info.affiliation = organization + " " + address;
 
-    const bio = $individInfo.find("otherInfo").text();
-    info["biography[ru_RU]"] = bio;
+    info.biography = $individInfo.find("otherInfo").text();
 
-    const email = $individInfo.find("email").text();
-    info["email"] = email;
+    info.email = $individInfo.find("email").text();
 
     return info;
   }
@@ -212,7 +206,16 @@ class Importer {
       const $individInfo_rus = $author.find("individInfo[lang=RUS]");
       const $individInfo_eng = $author.find("individInfo[lang=ENG]");
 
-      const authorInfo = this.getAuthorInfo($individInfo_rus);
+      const authorInfo_rus = this.getAuthorInfo($individInfo_rus);
+
+      var authorInfo = {};
+      authorInfo.firstName = authorInfo_rus.firstName;
+      authorInfo.middleName = authorInfo_rus.middleName;
+      authorInfo.lastName = authorInfo_rus.lastName;
+      authorInfo.email = authorInfo_rus.email;
+
+      authorInfo['affiliation[ru_RU]'] = authorInfo_rus.affiliation;
+      authorInfo['biography[ru_RU]'] = authorInfo_rus.biography;
       authorInfoCollection.push(authorInfo);
     });
 
