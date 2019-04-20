@@ -74,6 +74,7 @@ class Importer {
     const cwd = path.dirname(xmlFilePath);
     console.success("Processing directory:", path.relative(__dirname, cwd));
 
+    // Read XML file with issue data
     const xmlData = fs.readFileSync(xmlFilePath, "utf-16le");
     const $xml = cheerio.load(xmlData, { xmlMode: true });
 
@@ -124,8 +125,17 @@ class Importer {
 
     if (!year) info["showYear"] = "0";
 
+    // First, upload issue cover if it exists
+    const coverImagePath = path.join(cwd, 'cover.jpg');
+    if (fs.existsSync(coverImagePath)) {
+      const issueCoverImageId = await Issue.uploadCover(this.client, journalSlug, coverImagePath);
+      if (issueCoverImageId) {
+        info.temporaryFileId = issueCoverImageId;
+      }
+    }
     // console.log(info)
 
+    // Create issue in OJS. Uploaded cover will be attached by its id during creation
     const issueId = await Issue.create(this.client, journalSlug, info);
     console.success("Got issue id:", issueId);
 
@@ -139,7 +149,6 @@ class Importer {
         `Creating submission ${i + 1}/${totalArticles} with issueId ${issueId}`
       );
       var submissionInfo = await this.getArticleInfo(articleXML, cwd);
-
       submissionInfo["issueId"] = issueId;
 
       // TODO validate info
@@ -148,6 +157,7 @@ class Importer {
       await this.submission.create(journalSlug, submissionInfo);
     });
 
+    // Publish the issue
     await Issue.publish(this.client, journalSlug, issueId);
   }
 

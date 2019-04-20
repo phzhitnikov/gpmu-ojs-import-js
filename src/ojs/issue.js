@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 const endpoints = require('./endpoints')
 const form_data = require('./form-data')
 
@@ -32,7 +34,42 @@ exports.create = async (client, journalSlug, info = {}) => {
     return diff(issueIdsAfter, issueIdsBefore)[0]
 }
 
+exports.uploadCover = async (client, journalSlug, imagePath) => {
+    var imageId;
+    const journalUrl = client.getJournalUrl(journalSlug);
+
+    console.log("Uploading issue cover:", imagePath);
+
+    const fileStream = fs.createReadStream(imagePath);
+
+    await client
+        .sendJson({
+            method: "POST",
+            baseUrl: journalUrl,
+            uri: endpoints.issue.uploadCover,
+            headers: {
+                browser_user_agent: client.apiDefaults.headers["User-Agent"]
+            },
+            formData: {
+                name: "name",
+                uploadedFile: fileStream
+            }
+        })
+        .then(jsonData => {
+            console.info("Cover upload result:", jsonData);
+
+            // TODO Check JSON has certain info
+            if (!jsonData || !jsonData.temporaryFileId) Promise.reject();
+
+            imageId = jsonData.temporaryFileId;
+        })
+        .catch(err => console.error("Issue cover upload failed:", err));
+
+    return imageId;
+}
+
 exports.publish = async (client, journalSlug, issueId) => {
+    console.info("Publishing issue...")
     const journalUrl = client.getJournalUrl(journalSlug);
 
     return client

@@ -11,7 +11,8 @@ module.exports = {
     issue: {
         getAll: '$$$call$$$/grid/issues/future-issue-grid/fetch-grid',
         create: '$$$call$$$/grid/issues/future-issue-grid/update-issue?issueId=',
-        publish: '$$$call$$$/grid/issues/future-issue-grid/publish-issue'
+        publish: '$$$call$$$/grid/issues/future-issue-grid/publish-issue',
+        uploadCover: '$$$call$$$/grid/issues/future-issue-grid/upload-file',
     },
     submission: {
         prepare: 'submission/step/1',
